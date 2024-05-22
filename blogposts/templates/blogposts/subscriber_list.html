@@ -1,0 +1,14 @@
+<!-- templates/blogposts/subscriber_list.html -->
+
+{% extends 'blogposts/index.html' %}
+
+{% block content %}
+  <div class="text-left">
+    <h3>Subscriber List</h3>
+    <ul>
+      {% for subscriber in subscribers %}
+        <li>{{ subscriber.name }} ({{ subscriber.email }}) - Subscribed on {{ subscriber.date_subscribed }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'blogposts/index.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="text-left">
+    <h3>WELCOME TO BLOG POSTS</h3>
+    <br>
+    <h5>Keep track of the latest blogs effectively!</h5>
+    <hr>
+
+    <h1 class="welcome">Welcome to blogposts: {{ user }}</h1>
+
+    <img src="https://wallpaperaccess.com/full/2889827.jpg" alt="Image">
+
+    {% for post in posts %}
+      <div class="post">
+        <div class="post-id">Post No: {{ post.id }}</div>
+        <div class="post-author">Author: {{ post.author }}</div>
+        <div class="post-title">Title: {{ post.title }}</div>
+        <div class="post-content">Content: {{ post.content }}</div>
+      </div>
+      <hr>
+    {% endfor %}
+  </div>
+{% endblock %}

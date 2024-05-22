@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog posts</title>
+  <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/flatly/bootstrap.min.css">
+  
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+  <style>
+    body {
+      padding-top: 56px; /* Adjust this value based on the height of your navbar */
+    }
+  </style>
+</head>
+<body>
+
+   {% include 'blogposts/navbar.html' %}
+
+
+
+  <div class="container">
+    <br>
+
+      
+
+
+    {% block content %}
+
+ <div class="text-left">
+    <h3>WELCOME TO BLOG POSTS</h3>
+    <br>
+    <h5>Keep track of the latest blogs effectively!</h5>
+    <hr>
+
+    <h1 class="welcome">Welcome to blogposts: {{ user }}</h1>
+
+    <img src="{% static 'images/download.jpeg' %}" alt="Image">
+
+    <div class="header"> <!-- Added header section -->
+      <ul>
+        {% for post in posts %}
+          <li>{{ post.title }}</li>
+          <li>{{ post.author.username }}</li>
+          <li>{{ post.content }}</li>
+        {% endfor %}
+      </ul>
+    </div> <!-- End of header section -->
+  </div>
+
+
+
+
+    
+    {% endblock %}
+  </div>
+  
+
+  <div class= "box">
+
+    <form id="subscriptionForm" action="#" method="post">{% csrf_token %}
+    
+      <div class="formbox">
+    
+        <input type="email" id="emailInput" name="email" placeholder="Enter email address" required>
+    
+         <button type="submit">Subscribe</button>
+         </div>
+      </form>
+    
+
+
+
+
+
+
+  <script src="{% static 'js/app.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+  
+  <script>
+    // Function to validate email format
+    function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    // Function to handle subscription form submission
+    function handleSubscriptionFormSubmission() {
+        const emailInput = document.getElementById('emailInput').value;
+        
+        if (!validateEmail(emailInput)) {
+            // Invalid email format, prevent form submission and alert user
+            alert('Invalid email format. Please enter a valid email address.');
+            event.preventDefault(); // Prevent form submission
+        }
+    }
+
+    // Attach event listener to form submission
+    document.getElementById('subscriptionForm').addEventListener('submit', handleSubscriptionFormSubmission);
+  </script>
+
+</body>
+</html>
